@@ -1,0 +1,2 @@
+# selfhosted
+my selfhosted setup
