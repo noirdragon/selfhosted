@@ -1,0 +1,28 @@
+version: "2.1"
+services:
+  swag:
+    image: linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Toronto
+      - URL=YOUR_DOMAIN
+      - SUBDOMAINS=wildcard
+      - VALIDATION=dns
+      - DNSPLUGIN=cloudflare 
+      - EMAIL=YOUR_EMAIL
+      - CERTPROVIDER=zerossl
+    volumes:
+      - ./config:/config
+    ports:
+      - 443:443
+      - 80:80 #optional
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: reverse-proxy

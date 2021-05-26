@@ -1,0 +1,20 @@
+version: "2.1"
+services:
+  librespeed:
+    image: ghcr.io/linuxserver/librespeed
+    container_name: librespeed
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Toronto
+      - PASSWORD=YOUR_PASSWORd
+    volumes:
+      - ./config:/config
+        #    ports:
+        #      - 80:80
+    restart: unless-stopped
+
+networks:
+   default:
+     external:
+        name: reverse-proxy
